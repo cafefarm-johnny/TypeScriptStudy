@@ -61,3 +61,47 @@ function greeter3(person: Person) {
 const userClass = new Student("Johnny", "C.", "Uhm");
 
 console.log(greeter3(userClass));
+
+
+
+
+
+
+
+class TempClass {
+    product: string; 
+    ID: string;
+    itemID: string;
+
+    constructor(public prod: string, public id: string, public item: string) {
+        this.product = prod;
+        this.itemID = item;
+        this.ID = id;
+    }
+}
+
+let classArray: Array<TempClass> = [];
+
+const a: Array<any> = [
+    { product: "123", ID: "abc" }, 
+    { product: "456", ID: "efg" }
+];
+const b: Array<any> = [
+    { product: "123", itemID: "itemID A" }, 
+    { product: "456", itemID: "itemID B" }
+];
+
+if (a.length === b.length)
+{
+    for (let i: number = 0; i < a.length; i += 1)
+    {
+        if (a[i].product === b[i].product)
+        {
+            classArray.push(new TempClass(a[i].product, a[i].ID, b[i].itemID));
+        }    
+    }
+}
+
+classArray.forEach(item => {
+    console.log('classArray : ', item);
+});

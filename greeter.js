@@ -31,3 +31,33 @@ function greeter3(person) {
 }
 var userClass = new Student("Johnny", "C.", "Uhm");
 console.log(greeter3(userClass));
+var TempClass = /** @class */ (function () {
+    function TempClass(prod, id, item) {
+        this.prod = prod;
+        this.id = id;
+        this.item = item;
+        this.product = prod;
+        this.itemID = item;
+        this.ID = id;
+    }
+    return TempClass;
+}());
+var classArray = [];
+var a = [
+    { product: "123", ID: "abc" },
+    { product: "456", ID: "efg" }
+];
+var b = [
+    { product: "123", itemID: "itemID A" },
+    { product: "456", itemID: "itemID B" }
+];
+if (a.length === b.length) {
+    for (var i = 0; i < a.length; i += 1) {
+        if (a[i].product === b[i].product) {
+            classArray.push(new TempClass(a[i].product, a[i].ID, b[i].itemID));
+        }
+    }
+}
+classArray.forEach(function (item) {
+    console.log('classArray : ', item);
+});
