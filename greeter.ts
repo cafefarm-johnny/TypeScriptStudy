@@ -80,13 +80,13 @@ class TempClass {
     }
 }
 
-let classArray: Array<TempClass> = [];
+let classArray: Array<{ product: string, ID: string, itemID: string }> = [];
 
-const a: Array<any> = [
+const a: Array<{ product: string, ID: string }> = [
     { product: "123", ID: "abc" }, 
     { product: "456", ID: "efg" }
 ];
-const b: Array<any> = [
+const b: Array<{ product: string, itemID: string }> = [
     { product: "123", itemID: "itemID A" }, 
     { product: "456", itemID: "itemID B" }
 ];
