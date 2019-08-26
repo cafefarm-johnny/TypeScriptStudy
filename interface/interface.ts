@@ -100,3 +100,15 @@ console.log(myRamen);
 
 
 
+// 함수 타입 (Function Types)
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+    let result = source.search(subString);
+    return result > -1;
+}
+
+console.log(mySearch('안녕하세요', '히히'));

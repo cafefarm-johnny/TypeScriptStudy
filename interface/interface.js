@@ -42,5 +42,13 @@ function createRamen(recipe) {
     return newRamen;
 }
 // let myRamen = createRamen({ soup: 30, egg: 1 } as RamenConfig); // 1. 타입 단언(type assertion)을 사용하여 프로퍼티 초과 검사를 회피하고 추가 프로퍼티를 사용한다
-var myRamen = createRamen({ soup: 30, egg: 1 });
+// let myRamen = createRamen({ soup: 30, egg: 1 });
+var ramenCustomOption = { soup: 30, egg: 1 }; // 3. 객체를 다른 변수에 할당하여 인자로 넘기기
+var myRamen = createRamen(ramenCustomOption);
 console.log(myRamen);
+var mySearch;
+mySearch = function (source, subString) {
+    var result = source.search(subString);
+    return result > -1;
+};
+console.log(mySearch('안녕하세요', '히히'));
