@@ -152,3 +152,64 @@ interface ReadonlyStringArray {
 
 let myArray2: ReadonlyStringArray = ['Johnny', 'Uhm'];
 // myArray2[2] = 'Mallory'; // Index signature in type 'ReadonlyStringArray' only permits reading.ts(2542)
+
+
+
+// 클래스 타입 (Class Types)
+// 1. 인터페이스 구현 (Implementing an interface)
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date; 
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) {}
+}
+
+// 2. 클래스의 스태틱과 인스턴스의 차이점 (Difference between the static and instance sides of classes)
+interface ClockConstructor {
+    new (hour: number, minute: number);
+}
+
+// 스태틱 측면의 타입과 인스턴스 측면의 타입으로 인터페이스를 만들고 
+// 이 인터페이스를 구현하는 클래스를 생성하려고 하면 오류가 발생한다.
+// 그 이유는 클래스가 인터페이스를 구현할 때 클래스의 인스턴스 측면만 검사되기 때문이다.
+// 생성자는 정적인 측면이고, 이 때문에 검사에 포함되지 않는다.
+// class Clock2 implements ClockConstructor { 
+//     currentTime: Date;
+//     constructor(h: number, m: number) {}
+// }
+
+interface ClockConstructor2 {
+    new (hour: number, minute: number): ClockInterface2;
+}
+interface ClockInterface2 {
+    tick();
+}
+
+function createClock(ctor: ClockConstructor2, hour: number, minute: number): ClockInterface2 {
+    return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface2 {
+    constructor(h: number, m: number) {}
+    tick() {
+        console.log('beep beep');
+    }
+}
+class AnalogClock implements ClockInterface2 {
+    constructor(h: number, m: number) {}
+    tick() {
+        console.log('tick tock');
+    }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+
+console.log('digital: ', digital.tick());
+console.log('analog: ', analog.tick());
