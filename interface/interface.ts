@@ -112,3 +112,43 @@ mySearch = function(source: string, subString: string) {
 }
 
 console.log(mySearch('안녕하세요', '히히'));
+
+
+
+// 인덱싱 가능 타입  (Indexable Types)
+interface StringArray {
+    [index: number]: string;
+}
+
+let myArray: StringArray;
+myArray = ['Johnny', 'Uhm'];
+
+let myStr: string = myArray[0];
+console.log(myStr);
+
+class Animal {
+    name: string;
+}
+
+class Dog extends Animal {
+    breed: string;
+}
+
+interface NotOkay {
+    // [x: number]: Animal; // Numeric index type 'Animal' is not assignable to string index type 'Dog'.ts(2413)
+    [x: string]: Dog;
+}
+
+interface NumberDictionary {
+    [index: string]: number;
+    // [index: string]: string;
+    length: number;
+    // name: string; // name의 타입이 인덱서의 하위 타입이 아니다.
+}
+
+interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+
+let myArray2: ReadonlyStringArray = ['Johnny', 'Uhm'];
+// myArray2[2] = 'Mallory'; // Index signature in type 'ReadonlyStringArray' only permits reading.ts(2542)

@@ -52,3 +52,7 @@ mySearch = function (source, subString) {
     return result > -1;
 };
 console.log(mySearch('안녕하세요', '히히'));
+var myArray;
+myArray = ['Johnny', 'Uhm'];
+var myStr = myArray[0];
+console.log(myStr);
