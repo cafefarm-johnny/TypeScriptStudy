@@ -213,3 +213,78 @@ let analog = createClock(AnalogClock, 7, 32);
 
 console.log('digital: ', digital.tick());
 console.log('analog: ', analog.tick());
+
+
+
+// 인터페이스 확장 (Extending interface)
+interface Shape {
+    color: string;
+}
+interface Square extends Shape {
+    sideLength: number;
+}
+
+let square = <Square> {};
+square.color = 'blue';
+square.sideLength = 10;
+console.log(square);
+
+// 여러 인터페이스 결합
+interface PenStroke {
+    penWidth: number;
+}
+interface Square2 extends Shape, PenStroke {
+    sideLength: number;
+}
+
+let square2 = <Square2> {};
+square2.color = 'red';
+square2.penWidth = 100;
+square2.sideLength = 30;
+console.log(square2);
+
+
+
+// 하이브리드 타입 (Hybrid Types)
+interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = <Counter> function(start: number) {};
+    counter.interval = 123;
+    counter.reset = function() {};
+    return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+
+console.log(c);
+// * 서드파티 자바스크립트와 상호 작용할 때 타입의 형태를 완전히 형성하려면 위와 같은 패턴으로 사용해야할 수도 있다.
+
+
+
+// 인터페이스 확장 클래스 (Interfaces Extending Classes)
+class Control {
+    private state: any;
+}
+interface SelectableControl extends Control {
+    // private state 프로퍼티르 포함하여 Control의 모든 멤버 변수가 포함되어 있다.
+    select(): void;
+}
+class Button extends Control implements SelectableControl {
+    select() {}
+}
+class TextBox extends Control {
+    select() {}
+}
+// 오류: Image 타입의 state 프로퍼티가 없다. SelectableControl 인터페이스는 Control 이나 Control의 서브 클래스에서만 구현할 수 있다.
+// class Image implements SelectableControl {
+//     select() {}
+// }
+class Location2 {}

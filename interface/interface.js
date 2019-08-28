@@ -113,3 +113,23 @@ var digital = createClock(DigitalClock, 12, 17);
 var analog = createClock(AnalogClock, 7, 32);
 console.log('digital: ', digital.tick());
 console.log('analog: ', analog.tick());
+var square = {};
+square.color = 'blue';
+square.sideLength = 10;
+console.log(square);
+var square2 = {};
+square2.color = 'red';
+square2.penWidth = 100;
+square2.sideLength = 30;
+console.log(square2);
+function getCounter() {
+    var counter = function (start) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+var c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+console.log(c);
